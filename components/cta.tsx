@@ -3,10 +3,10 @@ import Link from "next/link"
 import { Instagram, Facebook, Twitter, Linkedin } from "lucide-react"
 
 const socialLinks = [
-  { icon: Instagram, href: "https://instagram.com/cognizance_iitr", label: "Instagram" },
-  { icon: Facebook, href: "https://facebook.com/cognizance.iitr", label: "Facebook" },
-  { icon: Twitter, href: "https://twitter.com/cognizance_iitr", label: "Twitter" },
-  { icon: Linkedin, href: "https://linkedin.com/company/cognizance-iitr", label: "LinkedIn" },
+  { icon: Instagram, href: "https://instagram.com/mecharena_2026/", label: "Instagram" },
+
+  { icon: Twitter, href: "https://twitter.com/", label: "Twitter" },
+  { icon: Linkedin, href: "https://linkedin.com/company/mecharena-2026/", label: "LinkedIn" },
 ]
 
 export function CTA() {

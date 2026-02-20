@@ -12,7 +12,7 @@ const rajdhani = Rajdhani({
 
 export const metadata: Metadata = {
     title: 'Mechanrane 2026 | Futuristic Mechanical Fest',
-  description: 'Mechanrane – a fusion of mechanical engineering, robotics and futuristic innovation.',
+  description: 'Mecharena – a fusion of mechanical engineering, robotics and futuristic innovation.',
 
   generator: 'v0.app',
   icons: {
