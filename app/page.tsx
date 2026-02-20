@@ -4,6 +4,7 @@ import { About } from "@/components/about"
 import { Events } from "@/components/events"
 import { Workshops } from "@/components/workshops"
 import { FAQ } from "@/components/faq"
+import { Sponsors } from "@/components/sponsors"
 import { CTA } from "@/components/cta"
 import { Footer } from "@/components/footer"
 
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <About />
       <Events />
+      <Sponsors />
       <Workshops />
       <FAQ />
       <CTA />
