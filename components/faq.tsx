@@ -6,33 +6,33 @@ import { Plus, Minus } from "lucide-react"
 const faqs = [
   {
     id: 1,
-    question: "What is Cognizance?",
+    question: "What is Mecharena?",
     answer:
-      "Cognizance is the annual technical festival of IIT Roorkee, one of the largest and most prestigious techfests in India. It brings together the brightest minds from across the country to participate in competitions, workshops, and exhibitions.",
+      "Mecharena 2026 is a celebration of mechanical engineering, robotics, and innovation — bringing together students, professionals, and enthusiasts for competitions, workshops, and showcases.",
   },
   {
     id: 2,
     question: "What is a Pronite?",
     answer:
-      "Pronite refers to the professional night events during Cognizance, featuring performances by renowned artists, bands, and entertainers. These are the highlight evening events that provide a perfect blend of technology and entertainment.",
+      "'Pronite' refers to the evening entertainment events at Mecharena, featuring musical performances and special guest acts. These are social highlights meant for attendees to relax and enjoy after the day's technical events.",
   },
   {
     id: 3,
-    question: "How to register for Cognizance 2026?",
+    question: "How do I register for Mecharena 2026?",
     answer:
-      "You can register for Cognizance 2026 by clicking the 'Register' button on our homepage or visiting the registration page. Fill in your details, verify your email, and complete the payment process to secure your spot.",
+      "Register by clicking the 'Register' button on the site or visiting the registration page. Complete the form, verify your email, and follow the payment instructions to confirm your participation.",
   },
   {
     id: 4,
-    question: "What is included in the CLASSIC Pass?",
+    question: "What does the CLASSIC Pass include?",
     answer:
-      "The CLASSIC Pass includes access to all main events, workshops, exhibitions, and selected pronites. It also provides accommodation facilities, event merchandise, and priority registration for popular competitions.",
+      "The CLASSIC Pass grants access to main events, selected workshops, exhibitions, and certain pronites. It may include event merchandise and priority entry where applicable — check the pass details on the registration page.",
   },
   {
     id: 5,
-    question: "How to register for Events in Cognizance 2026?",
+    question: "How do I register for individual events at Mecharena?",
     answer:
-      "After completing your Cognizance registration, log in to your dashboard and browse the Events section. Select the events you wish to participate in, form teams if required, and submit your registration before the deadline.",
+      "After registering for Mecharena, log into your dashboard, go to the 'Events' section, choose the events you want to join, form or join teams if needed, and submit your event registrations before the deadline.",
   },
 ]
 
@@ -45,10 +45,10 @@ export function FAQ() {
 
   return (
     <section id="faq" className="py-20 bg-background">
-      <div className="container mx-auto px-4 max-w-4xl">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
         {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl font-bold text-primary text-center tracking-[0.15em] mb-16 font-sans">
-          FAQS
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary text-center tracking-[0.12em] sm:tracking-[0.14em] md:tracking-[0.15em] mb-12 sm:mb-16 font-sans">
+          FAQs
         </h2>
 
         {/* FAQ Items */}
