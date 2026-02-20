@@ -69,7 +69,7 @@ import { useState } from "react"
 export function Navbar() {
   const [open, setOpen] = useState(false)
 
-  const links = ["Home", "Events", "Workshops", "Previous", "Gallery"]
+  const links = ["Home", "Events", "Workshops", "Previous", "Gallery", "Brochure"]
 
   return (
     <motion.nav
@@ -105,12 +105,12 @@ export function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                <Link
-                  href="#"
-                  className="text-white/90 text-sm tracking-wider hover:text-cyan-400 transition-colors"
-                >
-                  {item}
-                </Link>
+                  <Link
+                    href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                    className="text-white/90 text-sm tracking-wider hover:text-cyan-400 transition-colors"
+                  >
+                    {item}
+                  </Link>
               </motion.div>
             ))}
 
