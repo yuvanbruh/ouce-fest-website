@@ -84,11 +84,11 @@ export function Navbar() {
           {/* Logo Section */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo.png"
+              src="/images/mecharena-logo.png"
               alt="Mecharena logo"
-              width={36}
-              height={36}
-              className="w-8 h-8 md:w-9 md:h-9"
+              width={44}
+              height={44}
+              className="w-9 h-9 md:w-11 md:h-11 object-contain"
               priority
             />
             <span className="text-white font-semibold tracking-[0.15em] md:tracking-[0.25em] text-sm md:text-lg uppercase">

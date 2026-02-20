@@ -123,3 +123,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Smooth scrolling and font smoothing for better UX */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hint the browser about animated elements for smoother rendering */
+img, video {
+  will-change: transform, opacity;
+}

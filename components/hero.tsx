@@ -110,13 +110,13 @@ export function Hero() {
 
       <div className="relative z-10 w-full min-h-screen flex items-center justify-center">
 
-        <div className="max-w-[1400px] w-full px-5 md:px-10 flex flex-col items-center text-center">
+        <div className="max-w-[1400px] w-full px-5 md:px-10 flex flex-col items-center text-center pt-20 md:pt-28">
 
           <motion.p
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-white/70 text-sm md:text-lg mb-3 md:mb-4 tracking-wider"
+            className="text-white/70 text-sm md:text-lg mt-2 mb-6 md:mb-8 tracking-wider"
           >
             Automation 4.0 Presents
           </motion.p>

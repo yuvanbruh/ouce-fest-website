@@ -55,13 +55,13 @@ function Rocket() {
   })
 
   return (
-    <group ref={ref} position={[0, -1, 0]} scale={1.2}>
+      <group ref={ref} position={[0, -1, 0]} scale={1.2}>
       <primitive object={scene} />
 
       <pointLight position={[0, -2, 0]} intensity={2.5} color="#ff4400" distance={10} />
 
       <Sparkles
-        count={80}
+        count={50}
         scale={[2.5, 2.5, 2.5]}
         size={2}
         speed={1}
@@ -117,7 +117,7 @@ export function SpaceScene() {
 
   return (
     <div className="absolute inset-0">
-      <Canvas camera={{ position: [0, 1, 7] }} gl={{ alpha: false }}>
+      <Canvas camera={{ position: [0, 1, 7] }} gl={{ alpha: false, antialias: true, powerPreference: 'high-performance' }} dpr={[1, 1.5]}>
 
         <CameraSetup />
 
@@ -126,7 +126,7 @@ export function SpaceScene() {
         <ambientLight intensity={1.2} />
         <directionalLight position={[10, 10, 10]} intensity={2} />
 
-        <Stars radius={160} depth={80} count={7000} factor={4} saturation={1} fade />
+        <Stars radius={160} depth={80} count={2000} factor={4} saturation={1} fade />
 
         <Planet />
         <Rocket />
