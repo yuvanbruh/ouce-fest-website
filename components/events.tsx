@@ -8,35 +8,67 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const events = [
   {
     id: 1,
-    name: "ARMAGEDDON",
-    image: "/images/event-armageddon.jpg",
+    name: "Mechathon",
+    image: "/images/event-mechathon.jpg",
     description:
-      "Combat robotics championship with custom bots. Inspired by Transformers, craft machines to defeat opponents. ARMAGEDDON showcases battles for glory. Build your champion. Categories: 8kg, 15kg, 30kg.",
-    prize: "6,00,000",
+      "A time-bound mechanical innovation challenge where ideas turn into reality. Participants design, build, and compete with custom robotic systems. Categories: 8kg, 15kg, 30kg combat robots.",
+    prize: "Will be updated soon",
   },
   {
     id: 2,
-    name: "NANO NAVIGATOR",
-    image: "/images/event-nano.jpg",
+    name: "Business Events",
+    image: "/images/event-business.jpg",
     description:
-      "Navigate micro-robots through intricate mazes. Test your precision engineering and control systems in this challenging competition.",
-    prize: "2,00,000",
+      "These events are crafted to nurture leadership, strategic thinking and startup culture. Participants will pitch ideas, present business models, and take on real-world corporate challenges.",
+    prize: "Will be updated soon",
   },
   {
     id: 3,
-    name: "LIGHTFURY",
-    image: "/images/event-lightfury.jpg",
+    name: "Open Loop Events",
+    image: "/images/event-openloop.jpg",
     description:
-      "High-speed autonomous drone racing through obstacle courses. Push the limits of flight technology and AI navigation.",
-    prize: "3,00,000",
+      "A blend of entertainment and team activities that refresh your mind while testing your creativity, coordination, and presence of mind.",
+    prize: "Will be updated soon",
   },
   {
     id: 4,
-    name: "SKY MANEUVER",
-    image: "/images/event-maneuver.jpg",
+    name: "Navadhara Praudyogika",
+    image: "/images/event-navadhara.jpg",
     description:
-      "Aerial combat and precision flying competition. Showcase your piloting skills and custom drone engineering.",
-    prize: "2,50,000",
+      "A project presentation event where students showcase innovative models and working prototypes, compete before expert judges, and win exciting cash prizes.",
+    prize: "Will be updated soon",
+  },
+  {
+    id: 5,
+    name: "3D Printing Hackathon",
+    image: "/images/event-3dprinting.jpg",
+    description:
+      "A fast-paced innovation challenge where ideas are transformed into real, functional prototypes using creative engineering and 3D printing.",
+    prize: "Will be updated soon",
+  },
+  {
+    id: 6,
+    name: "Technical Events",
+    image: "/images/event-technical.jpg",
+    description:
+      "Includes technical paper presentation, software building, CAD design challenge, analysis challenge, and more specialized technical competitions.",
+    prize: "Will be updated soon",
+  },
+  {
+    id: 7,
+    name: "Robotic Events",
+    image: "/images/event-robotic.jpg",
+    description:
+      "Line follower bot, RC racing, and autonomous drone challenge. Navigate robots through obstacles and showcase precision engineering and control systems.",
+    prize: "Will be updated soon",
+  },
+  {
+    id: 8,
+    name: "Workshops",
+    image: "/images/event-workshops.jpg",
+    description:
+      "Hands-on, industry-oriented workshops including SolidWorks, ANSYS, 3D Printing, Sheet Metal Design, Material Selection, Electric Vehicles, IC Engine, and more.",
+    prize: "Will be updated soon",
   },
 ]
 
