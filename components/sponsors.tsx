@@ -23,7 +23,7 @@ export function Sponsors() {
           ))}
         </div>
 
-        <p className="text-center text-muted-foreground text-sm mt-4">Replace the placeholder logos in <code>/public/images/sponsors/</code> with real sponsor images to update this section.</p>
+
       </div>
     </section>
   )
