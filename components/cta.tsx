@@ -11,29 +11,29 @@ const socialLinks = [
 
 export function CTA() {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 sm:py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4 text-center">
         {/* Robot Mascot */}
-        <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto mb-8">
+        <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto mb-6 sm:mb-8">
           <Image
             src="/images/robot-mascot.jpg"
-            alt="Cognizance Robot Mascot"
+            alt="Mecharena Robot Mascot"
             fill
             className="object-contain"
           />
         </div>
 
         {/* Heading */}
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider mb-2 font-sans">
+        <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider mb-1 sm:mb-2 font-sans">
           <span className="text-foreground">BOOK YOUR</span>
         </h2>
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider mb-12 font-sans">
+        <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider mb-8 sm:mb-12 font-sans">
           <span className="text-foreground">SLOTS </span>
           <span className="text-primary">NOW</span>
         </h2>
 
         {/* Social Links */}
-        <div className="flex items-center justify-center gap-6">
+        <div className="flex items-center justify-center gap-4 sm:gap-6">
           {socialLinks.map((social) => (
             <Link
               key={social.label}
@@ -43,7 +43,7 @@ export function CTA() {
               className="text-foreground hover:text-primary transition-colors"
               aria-label={social.label}
             >
-              <social.icon size={32} />
+              <social.icon size={24} className="sm:w-8 sm:h-8" />
             </Link>
           ))}
         </div>

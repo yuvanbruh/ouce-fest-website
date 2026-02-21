@@ -8,35 +8,67 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const events = [
   {
     id: 1,
-    name: "ARMAGEDDON",
-    image: "/images/event-armageddon.jpg",
+    name: "Mechathon",
+    image: "/images/event-mechathon.jpg",
     description:
-      "Combat robotics championship with custom bots. Inspired by Transformers, craft machines to defeat opponents. ARMAGEDDON showcases battles for glory. Build your champion. Categories: 8kg, 15kg, 30kg.",
-    prize: "6,00,000",
+      "A time-bound mechanical innovation challenge where ideas turn into reality. Participants design, build, and compete with custom robotic systems. Categories: 8kg, 15kg, 30kg combat robots.",
+    prize: "Will be updated soon",
   },
   {
     id: 2,
-    name: "NANO NAVIGATOR",
-    image: "/images/event-nano.jpg",
+    name: "Business Events",
+    image: "/images/event-business.jpg",
     description:
-      "Navigate micro-robots through intricate mazes. Test your precision engineering and control systems in this challenging competition.",
-    prize: "2,00,000",
+      "These events are crafted to nurture leadership, strategic thinking and startup culture. Participants will pitch ideas, present business models, and take on real-world corporate challenges.",
+    prize: "Will be updated soon",
   },
   {
     id: 3,
-    name: "LIGHTFURY",
-    image: "/images/event-lightfury.jpg",
+    name: "Open Loop Events",
+    image: "/images/event-openloop.jpg",
     description:
-      "High-speed autonomous drone racing through obstacle courses. Push the limits of flight technology and AI navigation.",
-    prize: "3,00,000",
+      "A blend of entertainment and team activities that refresh your mind while testing your creativity, coordination, and presence of mind.",
+    prize: "Will be updated soon",
   },
   {
     id: 4,
-    name: "SKY MANEUVER",
-    image: "/images/event-maneuver.jpg",
+    name: "Navadhara Praudyogika",
+    image: "/images/event-navadhara.jpg",
     description:
-      "Aerial combat and precision flying competition. Showcase your piloting skills and custom drone engineering.",
-    prize: "2,50,000",
+      "A project presentation event where students showcase innovative models and working prototypes, compete before expert judges, and win exciting cash prizes.",
+    prize: "Will be updated soon",
+  },
+  {
+    id: 5,
+    name: "3D Printing Hackathon",
+    image: "/images/event-3dprinting.jpg",
+    description:
+      "A fast-paced innovation challenge where ideas are transformed into real, functional prototypes using creative engineering and 3D printing.",
+    prize: "Will be updated soon",
+  },
+  {
+    id: 6,
+    name: "Technical Events",
+    image: "/images/event-technical.jpg",
+    description:
+      "Includes technical paper presentation, software building, CAD design challenge, analysis challenge, and more specialized technical competitions.",
+    prize: "Will be updated soon",
+  },
+  {
+    id: 7,
+    name: "Robotic Events",
+    image: "/images/event-robotic.jpg",
+    description:
+      "Line follower bot, RC racing, and autonomous drone challenge. Navigate robots through obstacles and showcase precision engineering and control systems.",
+    prize: "Will be updated soon",
+  },
+  {
+    id: 8,
+    name: "Workshops",
+    image: "/images/event-workshops.jpg",
+    description:
+      "Hands-on, industry-oriented workshops including SolidWorks, ANSYS, 3D Printing, Sheet Metal Design, Material Selection, Electric Vehicles, IC Engine, and more.",
+    prize: "Will be updated soon",
   },
 ]
 
@@ -53,30 +85,30 @@ export function Events() {
   }
 
   return (
-    <section id="events" className="py-20 bg-background">
+    <section id="events" className="py-12 sm:py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl font-bold text-primary text-center tracking-[0.15em] mb-16 font-sans">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary text-center tracking-[0.15em] mb-8 sm:mb-12 md:mb-16 font-sans">
           EVENTS
         </h2>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-start">
           {/* Event Details */}
-          <div className="space-y-6">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground tracking-wide font-sans">
+          <div className="space-y-4 sm:space-y-6">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground tracking-wide font-sans">
               {activeEvent.name}
             </h3>
-            <div className="w-28 h-1 bg-gradient-to-r from-primary to-cyan-400" />
-            <p className="text-muted-foreground leading-relaxed">{activeEvent.description}</p>
+            <div className="w-20 sm:w-28 h-1 bg-gradient-to-r from-primary to-cyan-400" />
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{activeEvent.description}</p>
 
-            <div className="inline-block bg-foreground text-background px-6 py-2 font-bold tracking-wider text-sm font-sans">
+            <div className="inline-block bg-foreground text-background px-4 sm:px-6 py-2 font-bold tracking-wider text-xs sm:text-sm font-sans">
               PRIZES WORTH : {activeEvent.prize}
             </div>
 
             <div>
               <Link
                 href={`#event-${activeEvent.id}`}
-                className="inline-block px-8 py-3 border-2 border-primary text-primary font-semibold tracking-wider text-sm hover:bg-primary hover:text-background transition-all duration-300"
+                className="inline-block px-6 sm:px-8 py-2 sm:py-3 border-2 border-primary text-primary font-semibold tracking-wider text-xs sm:text-sm hover:bg-primary hover:text-background transition-all duration-300"
               >
                 KNOW MORE
               </Link>
@@ -85,12 +117,12 @@ export function Events() {
 
           {/* Event Cards Carousel */}
           <div className="relative">
-            <div className="flex gap-4 overflow-hidden">
+            <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 scrollbar-hide">
               {events.map((event, index) => (
                 <button
                   key={event.id}
                   onClick={() => setActiveIndex(index)}
-                  className={`relative flex-shrink-0 w-48 h-72 rounded-lg overflow-hidden transition-all duration-300 ${
+                  className={`relative flex-shrink-0 w-36 h-52 sm:w-48 sm:h-72 rounded-lg overflow-hidden transition-all duration-300 ${
                     index === activeIndex
                       ? "ring-2 ring-primary scale-105"
                       : "opacity-70 hover:opacity-100"
@@ -103,8 +135,8 @@ export function Events() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="text-foreground font-bold text-sm tracking-wider font-sans">
+                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4">
+                    <p className="text-foreground font-bold text-xs sm:text-sm tracking-wider font-sans line-clamp-2">
                       {event.name}
                     </p>
                   </div>
@@ -113,20 +145,20 @@ export function Events() {
             </div>
 
             {/* Navigation Arrows */}
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-2 sm:gap-4 mt-4 sm:mt-6">
               <button
                 onClick={prevEvent}
-                className="p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                className="p-1.5 sm:p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
                 aria-label="Previous event"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
               </button>
               <button
                 onClick={nextEvent}
-                className="p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                className="p-1.5 sm:p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
                 aria-label="Next event"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={20} className="sm:w-6 sm:h-6" />
               </button>
             </div>
           </div>
