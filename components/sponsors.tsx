@@ -1,12 +1,12 @@
-import Image from "next/image"
+import Image from \"next/image\"
 
 const sponsors = [
-  { src: "/images/sponsors/sponsor-1.svg", name: "Sponsor 1" },
-  { src: "/images/sponsors/sponsor-2.svg", name: "Sponsor 2" },
-  { src: "/images/sponsors/sponsor-3.svg", name: "Sponsor 3" },
-  { src: "/images/sponsors/sponsor-4.svg", name: "Sponsor 4" },
-  { src: "/images/sponsors/sponsor-5.svg", name: "Sponsor 5" },
-  { src: "/images/sponsors/sponsor-6.svg", name: "Sponsor 6" },
+  { src: \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Logo_2013_Google.png/1200px-Logo_2013_Google.png\", name: \"Google\" },
+  { src: \"https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/1200px-Microsoft_logo_%282012%29.svg.png\", name: \"Microsoft\" },
+  { src: \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png\", name: \"AWS\" },
+  { src: \"https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Avalanche_blockchain_logo.svg/1200px-Avalanche_blockchain_logo.svg.png\", name: \"Avalanche\" },
+  { src: \"https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/ISRO_logo.svg/1024px-ISRO_logo.svg.png\", name: \"ISRO\" },
+  { src: \"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png\", name: \"Google Cloud\" },
 ]
 
 export function Sponsors() {
