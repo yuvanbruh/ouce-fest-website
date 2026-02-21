@@ -85,30 +85,30 @@ export function Events() {
   }
 
   return (
-    <section id="events" className="py-20 bg-background">
+    <section id="events" className="py-12 sm:py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl font-bold text-primary text-center tracking-[0.15em] mb-16 font-sans">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary text-center tracking-[0.15em] mb-8 sm:mb-12 md:mb-16 font-sans">
           EVENTS
         </h2>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-start">
           {/* Event Details */}
-          <div className="space-y-6">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground tracking-wide font-sans">
+          <div className="space-y-4 sm:space-y-6">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground tracking-wide font-sans">
               {activeEvent.name}
             </h3>
-            <div className="w-28 h-1 bg-gradient-to-r from-primary to-cyan-400" />
-            <p className="text-muted-foreground leading-relaxed">{activeEvent.description}</p>
+            <div className="w-20 sm:w-28 h-1 bg-gradient-to-r from-primary to-cyan-400" />
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{activeEvent.description}</p>
 
-            <div className="inline-block bg-foreground text-background px-6 py-2 font-bold tracking-wider text-sm font-sans">
+            <div className="inline-block bg-foreground text-background px-4 sm:px-6 py-2 font-bold tracking-wider text-xs sm:text-sm font-sans">
               PRIZES WORTH : {activeEvent.prize}
             </div>
 
             <div>
               <Link
                 href={`#event-${activeEvent.id}`}
-                className="inline-block px-8 py-3 border-2 border-primary text-primary font-semibold tracking-wider text-sm hover:bg-primary hover:text-background transition-all duration-300"
+                className="inline-block px-6 sm:px-8 py-2 sm:py-3 border-2 border-primary text-primary font-semibold tracking-wider text-xs sm:text-sm hover:bg-primary hover:text-background transition-all duration-300"
               >
                 KNOW MORE
               </Link>
@@ -117,12 +117,12 @@ export function Events() {
 
           {/* Event Cards Carousel */}
           <div className="relative">
-            <div className="flex gap-4 overflow-hidden">
+            <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 scrollbar-hide">
               {events.map((event, index) => (
                 <button
                   key={event.id}
                   onClick={() => setActiveIndex(index)}
-                  className={`relative flex-shrink-0 w-48 h-72 rounded-lg overflow-hidden transition-all duration-300 ${
+                  className={`relative flex-shrink-0 w-36 h-52 sm:w-48 sm:h-72 rounded-lg overflow-hidden transition-all duration-300 ${
                     index === activeIndex
                       ? "ring-2 ring-primary scale-105"
                       : "opacity-70 hover:opacity-100"
@@ -135,8 +135,8 @@ export function Events() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="text-foreground font-bold text-sm tracking-wider font-sans">
+                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4">
+                    <p className="text-foreground font-bold text-xs sm:text-sm tracking-wider font-sans line-clamp-2">
                       {event.name}
                     </p>
                   </div>
@@ -145,20 +145,20 @@ export function Events() {
             </div>
 
             {/* Navigation Arrows */}
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-2 sm:gap-4 mt-4 sm:mt-6">
               <button
                 onClick={prevEvent}
-                className="p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                className="p-1.5 sm:p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
                 aria-label="Previous event"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
               </button>
               <button
                 onClick={nextEvent}
-                className="p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                className="p-1.5 sm:p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
                 aria-label="Next event"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={20} className="sm:w-6 sm:h-6" />
               </button>
             </div>
           </div>
