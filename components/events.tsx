@@ -60,19 +60,23 @@ const events = [
       "Analysis Challenge",
     ],
   },
-  {
-    id: 7,
-    name: "Robotic Events",
-    image: "images/sponsors/alan-quirvan-U902HYyXYtw-unsplash.jpg",
-    description: "Line follower bot, RC racing and autonomous drone challenges.",
-    prize: "Will be updated soon",
-    subEvents: [
-      "Line Follower Bot",
-      "RC Racing",
-      "Autonomous Drone Challenge",
-    ],
-  },
-  
+ {
+  id: 7,
+  name: "Robotic Events",
+  image: "images/sponsors/leiada-krozjhen-99F9-FV3cbE-unsplash.jpg",
+  description: "Combined Line Follower Bot and RC Racing challenge.",
+  prize: "Will be updated soon",
+  subEvents: [
+    "Line Follower Bot + RC Racing"
+  ],
+},
+{
+  id: 9,
+  name: "Autonomous Drone Challenge",
+  image: "images/sponsors/alan-quirvan-U902HYyXYtw-unsplash.jpg",
+  description: "Autonomous drone competition focusing on navigation and precision.",
+  prize: "Will be updated soon",
+},
   {
     id: 8,
     name: "Workshops",
@@ -253,6 +257,12 @@ export function Events() {
 {/* Prize */}
 <p className="font-semibold mb-6">
   Prize: {activeEvent.prize}
+</p>
+
+{/* Multiple Events Notice */}
+<p className="text-sm text-muted-foreground mb-6">
+  You may participate in multiple events. 
+  Please submit separate registrations and payments for each event.
 </p>
 
 {!showForm && (
