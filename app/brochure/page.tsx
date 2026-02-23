@@ -24,7 +24,7 @@ export default function BrochurePage() {
         <div className="w-full h-[80vh] bg-[#0b0e11] rounded overflow-hidden shadow-lg">
           {/* Browser PDF viewer; replace /brochure.pdf in public/ with your file to load */}
           <iframe
-            src="/brochure.pdf"
+            src="public/MECHARENA'26 brochure.pdf"
             title="Mecharena Brochure"
             className="w-full h-full block"
             style={{ border: "none" }}

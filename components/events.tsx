@@ -1,15 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
-import { useState } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const events = [
   {
     id: 1,
     name: "Mechathon",
-    image: "/images/event-mechathon.jpg",
+    image: "/images/event-armageddon.jpg",
     description:
       "A time-bound mechanical innovation challenge where ideas turn into reality. Participants design, build, and compete with custom robotic systems. Categories: 8kg, 15kg, 30kg combat robots.",
     prize: "Will be updated soon",
@@ -17,7 +16,7 @@ const events = [
   {
     id: 2,
     name: "Business Events",
-    image: "/images/event-business.jpg",
+    image:"images/sponsors/business.jpeg",
     description:
       "These events are crafted to nurture leadership, strategic thinking and startup culture. Participants will pitch ideas, present business models, and take on real-world corporate challenges.",
     prize: "Will be updated soon",
@@ -25,7 +24,7 @@ const events = [
   {
     id: 3,
     name: "Open Loop Events",
-    image: "/images/event-openloop.jpg",
+    image: "/images/event-maneuver.jpg",
     description:
       "A blend of entertainment and team activities that refresh your mind while testing your creativity, coordination, and presence of mind.",
     prize: "Will be updated soon",
@@ -33,7 +32,7 @@ const events = [
   {
     id: 4,
     name: "Navadhara Praudyogika",
-    image: "/images/event-navadhara.jpg",
+    image: "images/sponsors/download.jpeg",
     description:
       "A project presentation event where students showcase innovative models and working prototypes, compete before expert judges, and win exciting cash prizes.",
     prize: "Will be updated soon",
@@ -41,7 +40,7 @@ const events = [
   {
     id: 5,
     name: "3D Printing Hackathon",
-    image: "/images/event-3dprinting.jpg",
+    image: "images/sponsors/3d.jpeg",
     description:
       "A fast-paced innovation challenge where ideas are transformed into real, functional prototypes using creative engineering and 3D printing.",
     prize: "Will be updated soon",
@@ -49,7 +48,7 @@ const events = [
   {
     id: 6,
     name: "Technical Events",
-    image: "/images/event-technical.jpg",
+    image: "images/sponsors/technical.jpeg",
     description:
       "Includes technical paper presentation, software building, CAD design challenge, analysis challenge, and more specialized technical competitions.",
     prize: "Will be updated soon",
@@ -57,7 +56,7 @@ const events = [
   {
     id: 7,
     name: "Robotic Events",
-    image: "/images/event-robotic.jpg",
+    image: "/images/event-nano.jpg",
     description:
       "Line follower bot, RC racing, and autonomous drone challenge. Navigate robots through obstacles and showcase precision engineering and control systems.",
     prize: "Will be updated soon",
@@ -65,7 +64,7 @@ const events = [
   {
     id: 8,
     name: "Workshops",
-    image: "/images/event-workshops.jpg",
+    image: "images/sponsors/workshop.jpeg",
     description:
       "Hands-on, industry-oriented workshops including SolidWorks, ANSYS, 3D Printing, Sheet Metal Design, Material Selection, Electric Vehicles, IC Engine, and more.",
     prize: "Will be updated soon",
@@ -73,96 +72,135 @@ const events = [
 ]
 
 export function Events() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const activeEvent = events[activeIndex]
+  const [activeEvent, setActiveEvent] = useState<any>(null)
+  const [showForm, setShowForm] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const nextEvent = () => {
-    setActiveIndex((prev) => (prev + 1) % events.length)
-  }
-
-  const prevEvent = () => {
-    setActiveIndex((prev) => (prev - 1 + events.length) % events.length)
-  }
+  useEffect(() => {
+    if (activeEvent) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
+  }, [activeEvent])
 
   return (
-    <section id="events" className="py-12 sm:py-16 md:py-20 bg-background">
+    <section id="events" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        {/* Section Title */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary text-center tracking-[0.15em] mb-8 sm:mb-12 md:mb-16 font-sans">
+
+        <h2 className="text-4xl font-bold text-primary text-center mb-12">
           EVENTS
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-start">
-          {/* Event Details */}
-          <div className="space-y-4 sm:space-y-6">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground tracking-wide font-sans">
-              {activeEvent.name}
-            </h3>
-            <div className="w-20 sm:w-28 h-1 bg-gradient-to-r from-primary to-cyan-400" />
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{activeEvent.description}</p>
-
-            <div className="inline-block bg-foreground text-background px-4 sm:px-6 py-2 font-bold tracking-wider text-xs sm:text-sm font-sans">
-              PRIZES WORTH : {activeEvent.prize}
-            </div>
-
-            <div>
-              <Link
-                href={`#event-${activeEvent.id}`}
-                className="inline-block px-6 sm:px-8 py-2 sm:py-3 border-2 border-primary text-primary font-semibold tracking-wider text-xs sm:text-sm hover:bg-primary hover:text-background transition-all duration-300"
-              >
-                KNOW MORE
-              </Link>
-            </div>
-          </div>
-
-          {/* Event Cards Carousel */}
-          <div className="relative">
-            <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 scrollbar-hide">
-              {events.map((event, index) => (
-                <button
-                  key={event.id}
-                  onClick={() => setActiveIndex(index)}
-                  className={`relative flex-shrink-0 w-36 h-52 sm:w-48 sm:h-72 rounded-lg overflow-hidden transition-all duration-300 ${
-                    index === activeIndex
-                      ? "ring-2 ring-primary scale-105"
-                      : "opacity-70 hover:opacity-100"
-                  }`}
-                >
-                  <Image
-                    src={event.image || "/placeholder.svg"}
-                    alt={event.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4">
-                    <p className="text-foreground font-bold text-xs sm:text-sm tracking-wider font-sans line-clamp-2">
-                      {event.name}
-                    </p>
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            {/* Navigation Arrows */}
-            <div className="flex gap-2 sm:gap-4 mt-4 sm:mt-6">
-              <button
-                onClick={prevEvent}
-                className="p-1.5 sm:p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
-                aria-label="Previous event"
-              >
-                <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
-              </button>
-              <button
-                onClick={nextEvent}
-                className="p-1.5 sm:p-2 border border-muted-foreground/30 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
-                aria-label="Next event"
-              >
-                <ChevronRight size={20} className="sm:w-6 sm:h-6" />
-              </button>
-            </div>
-          </div>
+        {/* Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          {events.map((event) => (
+            <button
+              key={event.id}
+              onClick={() => setActiveEvent(event)}
+              className="relative h-64 rounded-xl overflow-hidden hover:scale-105 transition"
+            >
+              <Image
+                src={event.image}
+                alt={event.name}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black/50" />
+              <div className="absolute bottom-4 left-4 text-white font-bold">
+                {event.name}
+              </div>
+            </button>
+          ))}
         </div>
+
+        {/* Animated Modal */}
+        <AnimatePresence>
+          {activeEvent && (
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setActiveEvent(null)}
+            >
+              <motion.div
+                onClick={(e) => e.stopPropagation()}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="bg-background max-w-2xl w-full rounded-2xl p-6 relative max-h-[90vh] overflow-y-auto hide-scrollbar"
+              >
+                {/* Close */}
+                <button
+                  onClick={() => setActiveEvent(null)}
+                  className="absolute top-4 right-4 text-xl"
+                >
+                  ✕
+                </button>
+
+                <h3 className="text-3xl font-bold mb-4">
+                  {activeEvent.name}
+                </h3>
+
+                <Image
+                  src={activeEvent.image}
+                  alt={activeEvent.name}
+                  width={800}
+                  height={400}
+                  className="rounded-lg mb-6"
+                />
+
+                <p className="text-muted-foreground mb-4">
+                  {activeEvent.description}
+                </p>
+
+                <p className="font-semibold mb-6">
+                  Prize: {activeEvent.prize}
+                </p>
+
+                {!showForm && (
+                  <button
+                    onClick={() => setShowForm(true)}
+                    className="bg-primary text-white px-6 py-3 rounded font-semibold w-full"
+                  >
+                    REGISTER NOW
+                  </button>
+                )}
+
+                {showForm && (
+                  <div className="space-y-4 mt-6">
+                    <input
+                      placeholder="Full Name"
+                      className="w-full border p-3 rounded"
+                    />
+                    <input
+                      placeholder="College Name"
+                      className="w-full border p-3 rounded"
+                    />
+                    <input
+                      placeholder="Phone Number"
+                      className="w-full border p-3 rounded"
+                    />
+                    <input
+                      placeholder="UPI Transaction ID"
+                      className="w-full border p-3 rounded"
+                    />
+
+                    <button
+                      className="w-full bg-primary text-white py-3 rounded font-semibold"
+                    >
+                      Submit Registration
+                    </button>
+                  </div>
+                )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </div>
     </section>
   )

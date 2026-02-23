@@ -89,3 +89,15 @@
     @apply bg-background text-foreground;
   }
 }
+/* Hide modal scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html {
+  scroll-behavior: smooth;
+}
