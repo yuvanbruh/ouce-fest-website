@@ -286,7 +286,7 @@ export function Events() {
                         Scan & Pay via UPI
                       </p>
                       <Image
-                        src="/images/2.jpeg"
+                        src="images/sponsors/19.png"
                         alt="UPI QR Code"
                         width={200}
                         height={200}
