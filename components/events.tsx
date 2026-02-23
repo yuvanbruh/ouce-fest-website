@@ -8,7 +8,7 @@ const events = [
   {
     id: 1,
     name: "Mechathon",
-    image: "/images/event-armageddon.jpg",
+    image: "images/sponsors/mika-baumeister-wZ49T2Tc7xw-unsplash.jpg",
     description:
       "A time-bound mechanical innovation challenge where ideas turn into reality. Participants design, build, and compete with custom robotic systems.",
     prize: "Will be updated soon",
@@ -56,7 +56,7 @@ const events = [
   {
     id: 7,
     name: "Robotic Events",
-    image: "/images/event-nano.jpg",
+    image: "images/sponsors/alan-quirvan-U902HYyXYtw-unsplash.jpg",
     description:
       "Line follower bot, RC racing and autonomous drone challenges.",
     prize: "Will be updated soon",
@@ -159,7 +159,7 @@ export function Events() {
                 {!showForm && (
                   <button
                     onClick={() => setShowForm(true)}
-                    className="bg-primary text-white px-6 py-3 rounded font-semibold w-full"
+                    className="bg-cyan-600 text-white px-6 py-3 rounded font-semibold w-full"
                   >
                     REGISTER NOW
                   </button>
