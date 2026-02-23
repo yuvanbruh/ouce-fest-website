@@ -3,6 +3,10 @@ import { MongoClient } from "mongodb"
 
 const uri = process.env.MONGODB_URI as string
 
+if (!uri) {
+  throw new Error("Please define MONGODB_URI in environment variables")
+}
+
 declare global {
   var _mongoClientPromise: Promise<MongoClient> | undefined
 }
@@ -27,8 +31,16 @@ export async function GET() {
       .sort({ createdAt: -1 })
       .toArray()
 
-    return NextResponse.json(registrations)
+    // Convert _id to string for frontend safety
+    const cleaned = registrations.map((reg) => ({
+      ...reg,
+      _id: reg._id.toString(),
+    }))
+
+    return NextResponse.json(cleaned)
   } catch (error) {
+    console.error("Admin Fetch Error:", error)
+
     return NextResponse.json(
       { error: "Failed to fetch registrations" },
       { status: 500 }

@@ -1,3 +1,4 @@
+
 "use client"
 
 import Image from "next/image"
@@ -5,6 +6,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const events = [
+  
   {
     id: 1,
     name: "Mechathon",
@@ -49,18 +51,28 @@ const events = [
     id: 6,
     name: "Technical Events",
     image: "images/sponsors/kumpan-electric-SYo5eazBrls-unsplash.jpg",
-    description:
-      "Technical paper presentations, CAD challenges, analysis competitions and more.",
-    prize: "Will be updated soon",
+    description: "Technical competitions and challenges.",
+    prize: "Technical paper presentations, CAD challenges, analysis competitions and more.",
+    subEvents: [
+      "Technical Paper Presentation",
+      "Structure Building",
+      "CAD Design Challenge",
+      "Analysis Challenge",
+    ],
   },
   {
     id: 7,
     name: "Robotic Events",
     image: "images/sponsors/alan-quirvan-U902HYyXYtw-unsplash.jpg",
-    description:
-      "Line follower bot, RC racing and autonomous drone challenges.",
+    description: "Line follower bot, RC racing and autonomous drone challenges.",
     prize: "Will be updated soon",
+    subEvents: [
+      "Line Follower Bot",
+      "RC Racing",
+      "Autonomous Drone Challenge",
+    ],
   },
+  
   {
     id: 8,
     name: "Workshops",
@@ -81,25 +93,28 @@ export function Events() {
     college: "",
     phone: "",
     txnId: "",
+    subEvent: "",
   })
 
   useEffect(() => {
     document.body.style.overflow = activeEvent ? "hidden" : "auto"
   }, [activeEvent])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const validateForm = () => {
-    const { name, college, phone, txnId } = formData
+    const { name, college, phone, txnId, subEvent } = formData
 
     if (!name.trim() || name.length < 3) {
-      alert("Enter valid full name (min 3 characters)")
+      alert("Enter valid full name")
       return false
     }
 
-    if (!college.trim() || college.length < 2) {
+    if (!college.trim()) {
       alert("Enter valid college name")
       return false
     }
@@ -110,7 +125,12 @@ export function Events() {
     }
 
     if (!/^[A-Za-z0-9]{10,}$/.test(txnId)) {
-      alert("Enter valid UPI Transaction ID (min 10 characters)")
+      alert("Enter valid Transaction ID")
+      return false
+    }
+
+    if (activeEvent?.subEvents && !subEvent) {
+      alert("Please select category")
       return false
     }
 
@@ -118,8 +138,7 @@ export function Events() {
   }
 
   const handleSubmit = async () => {
-    if (!validateForm() || !activeEvent) return
-
+    if (!validateForm()) return
     setLoading(true)
 
     try {
@@ -148,9 +167,10 @@ export function Events() {
         college: "",
         phone: "",
         txnId: "",
+        subEvent: "",
       })
-    } catch (error) {
-      alert("Server error. Please try again.")
+    } catch {
+      alert("Server error. Try again.")
     }
 
     setLoading(false)
@@ -164,7 +184,7 @@ export function Events() {
           EVENTS
         </h2>
 
-        {/* Event Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {events.map((event) => (
             <button
@@ -213,34 +233,36 @@ export function Events() {
                   ✕
                 </button>
 
-                <h3 className="text-3xl font-bold mb-4">
-                  {activeEvent.name}
-                </h3>
+              <h3 className="text-3xl font-bold mb-4">
+  {activeEvent.name}
+</h3>
 
-                <Image
-                  src={activeEvent.image}
-                  alt={activeEvent.name}
-                  width={800}
-                  height={400}
-                  className="rounded-lg mb-6"
-                />
+<Image
+  src={activeEvent.image}
+  alt={activeEvent.name}
+  width={800}
+  height={400}
+  className="rounded-lg mb-6"
+/>
 
-                <p className="text-muted-foreground mb-4">
-                  {activeEvent.description}
-                </p>
+{/* Description */}
+<p className="text-muted-foreground mb-4">
+  {activeEvent.description}
+</p>
 
-                <p className="font-semibold mb-6">
-                  Prize: {activeEvent.prize}
-                </p>
+{/* Prize */}
+<p className="font-semibold mb-6">
+  Prize: {activeEvent.prize}
+</p>
 
-                {!showForm && (
-                  <button
-                    onClick={() => setShowForm(true)}
-                    className="bg-cyan-600 text-white px-6 py-3 rounded font-semibold w-full"
-                  >
-                    REGISTER NOW
-                  </button>
-                )}
+{!showForm && (
+  <button
+    onClick={() => setShowForm(true)}
+    className="bg-cyan-600 text-white px-6 py-3 rounded font-semibold w-full"
+  >
+    REGISTER NOW
+  </button>
+)}
 
                 {showForm && (
                   <div className="space-y-4 mt-6">
@@ -269,6 +291,30 @@ export function Events() {
                       className="w-full border p-3 rounded"
                     />
 
+                    {/* Sub Event Dropdown */}
+                 {activeEvent.subEvents && (
+  <select
+    name="subEvent"
+    value={formData.subEvent}
+    onChange={handleChange}
+    className="w-full border border-border p-3 rounded bg-background text-foreground focus:outline-none"
+  >
+    <option value="" disabled className="bg-background text-foreground">
+      Select Category
+    </option>
+
+    {activeEvent.subEvents.map((sub: string) => (
+      <option
+        key={sub}
+        value={sub}
+        className="bg-background text-foreground"
+      >
+        {sub}
+      </option>
+    ))}
+  </select>
+)}
+
                     <input
                       name="txnId"
                       placeholder="UPI Transaction ID"
@@ -276,35 +322,34 @@ export function Events() {
                       onChange={handleChange}
                       className="w-full border p-3 rounded"
                     />
+{/* Payment Notice */}
+<div className="text-sm text-muted-foreground text-center pt-2">
+  Registration will be confirmed only after successful payment.
+</div>
 
-                    <div className="text-sm text-muted-foreground text-center pt-2">
-                      Registration will be confirmed only after successful payment.
-                    </div>
-
-                    <div className="text-center pt-4">
-                      <p className="font-semibold mb-2">
-                        Scan & Pay via UPI
-                      </p>
-                      <Image
-                        src="images/sponsors/19.png"
-                        alt="UPI QR Code"
-                        width={200}
-                        height={200}
-                        className="mx-auto rounded-lg"
-                      />
-                    </div>
-
+{/* QR Code */}
+<div className="text-center pt-4">
+  <p className="font-semibold mb-2">
+    Scan & Pay via UPI (PhonePe / GPay / Any UPI App)
+  </p>
+  <Image
+    src="/images/sponsors/19.png"
+    alt="UPI QR Code"
+    width={200}
+    height={200}
+    className="mx-auto rounded-lg"
+  />
+</div>
                     <button
                       onClick={handleSubmit}
                       disabled={loading}
-                      className="w-full bg-cyan-600 text-white py-3 rounded font-semibold mt-4 disabled:opacity-50"
+                      className="w-full bg-cyan-600 text-white py-3 rounded font-semibold disabled:opacity-50"
                     >
                       {loading ? "Submitting..." : "Submit Registration"}
                     </button>
 
                   </div>
                 )}
-
               </motion.div>
             </motion.div>
           )}
