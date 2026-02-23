@@ -22,13 +22,8 @@ export function Navbar() {
   const [loading, setLoading] = useState(false)
   const [searched, setSearched] = useState(false)
 
-  // Prevent background scroll when modal open
   useEffect(() => {
-    if (passOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "auto"
-    }
+    document.body.style.overflow = passOpen ? "hidden" : "auto"
   }, [passOpen])
 
   const handleSearch = async () => {
@@ -62,7 +57,6 @@ export function Navbar() {
         <div className="max-w-[1400px] mx-auto px-5 md:px-8 py-4 md:py-5">
           <div className="flex items-center justify-between">
 
-            {/* Logo */}
             <Link href="/" className="flex items-center gap-3">
               <Image
                 src="/images/sponsors/Mecharena-logo-Photoroom.png"
@@ -76,9 +70,7 @@ export function Navbar() {
               </span>
             </Link>
 
-            {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-10">
-
               <Link href="/" className="text-white/90 text-sm tracking-wider hover:text-cyan-400 transition-colors">
                 Home
               </Link>
@@ -108,7 +100,6 @@ export function Navbar() {
               </button>
             </div>
 
-            {/* Mobile Toggle */}
             <button
               aria-label="Toggle Menu"
               onClick={() => setOpen(!open)}
@@ -116,11 +107,9 @@ export function Navbar() {
             >
               {open ? "CLOSE" : "MENU"}
             </button>
-
           </div>
         </div>
 
-        {/* ✅ RESTORED MOBILE MENU */}
         <AnimatePresence>
           {open && (
             <motion.div
@@ -130,16 +119,15 @@ export function Navbar() {
               className="md:hidden bg-black/90 backdrop-blur-md border-t border-white/10"
             >
               <div className="flex flex-col items-center gap-6 py-6">
-
-                <Link href="/" onClick={() => setOpen(false)} className="text-white text-base hover:text-cyan-400 transition">
+                <Link href="/" onClick={() => setOpen(false)} className="text-white">
                   Home
                 </Link>
 
-                <Link href="#events" onClick={() => setOpen(false)} className="text-white text-base hover:text-cyan-400 transition">
+                <Link href="#events" onClick={() => setOpen(false)} className="text-white">
                   Events
                 </Link>
 
-                <Link href="#contact" onClick={() => setOpen(false)} className="text-white text-base hover:text-cyan-400 transition">
+                <Link href="#contact" onClick={() => setOpen(false)} className="text-white">
                   Contact
                 </Link>
 
@@ -148,7 +136,7 @@ export function Navbar() {
                   download
                   target="_blank"
                   onClick={() => setOpen(false)}
-                  className="text-white text-base hover:text-cyan-400 transition"
+                  className="text-white"
                 >
                   Brochure
                 </a>
@@ -162,7 +150,6 @@ export function Navbar() {
                 >
                   🎟 MY PASS
                 </button>
-
               </div>
             </motion.div>
           )}
@@ -184,13 +171,32 @@ export function Navbar() {
               animate={{ scale: 1 }}
               exit={{ scale: 0.92 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-black border border-white/10 w-full max-w-2xl rounded-2xl p-8 max-h-[85vh] overflow-y-auto scrollbar-hide"
+              className="relative bg-black border border-white/10 w-full max-w-2xl rounded-2xl p-8 max-h-[85vh] overflow-y-auto scrollbar-hide"
             >
+              {/* CLOSE BUTTON */}
+             {/* CLOSE BUTTON */}
+<button
+  onClick={() => setPassOpen(false)}
+  className="absolute top-4 right-4 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-7 h-7 text-white"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={3}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M6 18L18 6" />
+  </svg>
+</button>
+
               <h2 className="text-3xl font-bold mb-8 text-center">
                 🎟 My Pass
               </h2>
 
-              <div className="flex gap-4 mb-8">
+              {/* Mobile Optimised Input Section */}
+              <div className="flex flex-col md:flex-row gap-4 mb-8">
                 <input
                   type="text"
                   placeholder="Enter registered phone number"
@@ -198,9 +204,10 @@ export function Navbar() {
                   onChange={(e) => setPhone(e.target.value)}
                   className="flex-1 bg-black border border-white/30 px-4 py-3 rounded focus:outline-none focus:border-cyan-400"
                 />
+
                 <button
                   onClick={handleSearch}
-                  className="bg-cyan-500 px-6 py-3 text-black font-semibold rounded hover:bg-cyan-400 transition"
+                  className="w-full md:w-auto bg-cyan-500 px-6 py-3 text-black font-semibold rounded hover:bg-cyan-400 transition"
                 >
                   {loading ? "Checking..." : "View"}
                 </button>
@@ -232,7 +239,7 @@ export function Navbar() {
                       Transaction ID
                     </p>
 
-                    <p className="font-mono text-sm">
+                    <p className="font-mono text-sm break-all">
                       {reg.txnId}
                     </p>
 
