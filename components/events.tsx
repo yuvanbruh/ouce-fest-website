@@ -74,10 +74,87 @@ const events = [
 export function Events() {
   const [activeEvent, setActiveEvent] = useState<any>(null)
   const [showForm, setShowForm] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const [formData, setFormData] = useState({
+    name: "",
+    college: "",
+    phone: "",
+    txnId: "",
+  })
 
   useEffect(() => {
     document.body.style.overflow = activeEvent ? "hidden" : "auto"
   }, [activeEvent])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const validateForm = () => {
+    const { name, college, phone, txnId } = formData
+
+    if (!name.trim() || name.length < 3) {
+      alert("Enter valid full name (min 3 characters)")
+      return false
+    }
+
+    if (!college.trim() || college.length < 2) {
+      alert("Enter valid college name")
+      return false
+    }
+
+    if (!/^[6-9]\d{9}$/.test(phone)) {
+      alert("Enter valid 10-digit phone number")
+      return false
+    }
+
+    if (!/^[A-Za-z0-9]{10,}$/.test(txnId)) {
+      alert("Enter valid UPI Transaction ID (min 10 characters)")
+      return false
+    }
+
+    return true
+  }
+
+  const handleSubmit = async () => {
+    if (!validateForm() || !activeEvent) return
+
+    setLoading(true)
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          eventName: activeEvent.name,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        alert(data.error || "Something went wrong")
+        setLoading(false)
+        return
+      }
+
+      alert("Registration submitted successfully!")
+
+      setShowForm(false)
+      setFormData({
+        name: "",
+        college: "",
+        phone: "",
+        txnId: "",
+      })
+    } catch (error) {
+      alert("Server error. Please try again.")
+    }
+
+    setLoading(false)
+  }
 
   return (
     <section id="events" className="py-16 bg-background">
@@ -124,9 +201,9 @@ export function Events() {
             >
               <motion.div
                 onClick={(e) => e.stopPropagation()}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
                 className="bg-background max-w-2xl w-full rounded-2xl p-6 relative max-h-[90vh] overflow-y-auto hide-scrollbar"
               >
                 <button
@@ -169,28 +246,41 @@ export function Events() {
                   <div className="space-y-4 mt-6">
 
                     <input
+                      name="name"
                       placeholder="Full Name"
-                      className="w-full border p-3 rounded"
-                    />
-                    <input
-                      placeholder="College Name"
-                      className="w-full border p-3 rounded"
-                    />
-                    <input
-                      placeholder="Phone Number"
-                      className="w-full border p-3 rounded"
-                    />
-                    <input
-                      placeholder="UPI Transaction ID"
+                      value={formData.name}
+                      onChange={handleChange}
                       className="w-full border p-3 rounded"
                     />
 
-                    {/* Payment Notice */}
+                    <input
+                      name="college"
+                      placeholder="College Name"
+                      value={formData.college}
+                      onChange={handleChange}
+                      className="w-full border p-3 rounded"
+                    />
+
+                    <input
+                      name="phone"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full border p-3 rounded"
+                    />
+
+                    <input
+                      name="txnId"
+                      placeholder="UPI Transaction ID"
+                      value={formData.txnId}
+                      onChange={handleChange}
+                      className="w-full border p-3 rounded"
+                    />
+
                     <div className="text-sm text-muted-foreground text-center pt-2">
                       Registration will be confirmed only after successful payment.
                     </div>
 
-                    {/* QR Code */}
                     <div className="text-center pt-4">
                       <p className="font-semibold mb-2">
                         Scan & Pay via UPI
@@ -205,9 +295,11 @@ export function Events() {
                     </div>
 
                     <button
-                      className="w-full bg-primary text-white py-3 rounded font-semibold mt-4"
+                      onClick={handleSubmit}
+                      disabled={loading}
+                      className="w-full bg-cyan-600 text-white py-3 rounded font-semibold mt-4 disabled:opacity-50"
                     >
-                      Submit Registration
+                      {loading ? "Submitting..." : "Submit Registration"}
                     </button>
 
                   </div>
