@@ -4,6 +4,7 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { PaymentQR } from "./PaymentQR"
 
 const events = [
   
@@ -365,24 +366,20 @@ setShowForm(false)
                       onChange={handleChange}
                       className="w-full border p-3 rounded"
                     />
-{/* Payment Notice */}
-<div className="text-sm text-muted-foreground text-center pt-2">
-  Registration will be confirmed only after successful payment.
-</div>
 
-{/* QR Code */}
-<div className="text-center pt-4">
-  <p className="font-semibold mb-2">
-    Scan & Pay via UPI (PhonePe / GPay / Any UPI App)
-  </p>
-  <Image
-    src="/images/sponsors/19.png"
-    alt="UPI QR Code"
-    width={200}
-    height={200}
-    className="mx-auto rounded-lg"
-  />
-</div>
+                    {/* Dynamic Payment QR Code */}
+                    {formData.name && (
+                      <div className="mt-6 pt-6 border-t border-white/10">
+                        <PaymentQR
+                          name={formData.name}
+                          eventName={activeEvent.name}
+                          phone={formData.phone}
+                          subEvent={formData.subEvent}
+                          price={selectedSubEvent?.price}
+                        />
+                      </div>
+                    )}
+
                     <button
                       onClick={handleSubmit}
                       disabled={loading}
