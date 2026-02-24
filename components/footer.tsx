@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container mx-auto px-4 space-y-8">
 
         {/* Contact Section */}
-        <div className="text-center space-y-3">
+        <div id="contact" className="text-center space-y-3">
           <h3 className="text-lg font-semibold text-primary">
             Contact
           </h3>

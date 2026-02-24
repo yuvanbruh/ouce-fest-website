@@ -1,4 +1,3 @@
-
 "use client"
 
 import Image from "next/image"
@@ -14,6 +13,8 @@ const events = [
     description:
       "A time-bound mechanical innovation challenge where ideas turn into reality. Participants design, build, and compete with custom robotic systems.",
     price: "₹249",
+      date: "11,12 Mar 2026",
+
   },
   {
     id: 2,
@@ -22,6 +23,8 @@ const events = [
     description:
     "Strategic and startup-focused events where participants pitch ideas and take on real-world corporate challenges.",
     price: "₹100",
+      date: "13 Mar 2026",
+
   },
   {
     id: 3,
@@ -30,14 +33,18 @@ const events = [
     description:
       "Creative and engaging team-based challenges testing coordination and presence of mind.",
     price: "Will be updated soon",
+      date: "12,13 Mar 2026",
+
   },
   {
     id: 4,
     name: "Navadhara Praudyogika",
     image: "images/sponsors/absolutvision-82TpEld0_e4-unsplash.jpg",
     description:
-      "Project presentation event showcasing innovative models and prototypes.",
+      "Project presentation event showcasing innovative models and prototypes. Prizes worth upto ₹10K",
     price: "₹499",
+      date: "13 Mar 2026",
+
   },
   {
     id: 5,
@@ -46,6 +53,8 @@ const events = [
     description:
       "Rapid innovation challenge transforming ideas into functional 3D printed prototypes.",
     price: "₹799",
+      date: "12,13 Mar 2026",
+
   },
   {
     id: 6,
@@ -53,21 +62,22 @@ const events = [
     image: "images/sponsors/kumpan-electric-SYo5eazBrls-unsplash.jpg",
     description: "Technical competitions and challenges.",
    subEvents: [
-      { name: "Technical Paper Presentation", price: "₹150" },
-      { name: "Structure Building", price: "₹150" },
-      { name: "Solidworks", price: "₹75" },
-      { name: "Ansys", price: "₹75" },
+      { name: "Technical Paper Presentation", price: "₹150",date: "12 Mar 2026" },
+      { name: "Structure Building", price: "₹150" ,date: "12 Mar 2026"},
+      { name: "Solidworks", price: "₹75",date: "13 Mar 2026" },
+      { name: "Ansys", price: "₹75", date: "13 Mar 2026"},
     ],
   },
  {
   id: 7,
   name: "Robotic Events",
   image: "images/sponsors/leiada-krozjhen-99F9-FV3cbE-unsplash.jpg",
-  description: "Combined Line Follower Bot and RC Racing challenge.",
+  description: "Combined Line Follower Bot and RC Racing challenge. Prizes worth upto ₹10K",
   subEvents: [
-      { name: "Line Follower Bot+RC Racing", price: "₹499" },
-      { name: "Line Follower", price: "₹299" },
-      { name: "RC Racing", price: "₹299" },
+      { name: "Line Follower Bot+RC Racing +Robo maze", price: "₹699",date: "12,13 Mar 2026" },
+      { name: "Line Follower", price: "₹299" ,date: "12,13 Mar 2026"},
+      { name: "RC Racing", price: "₹299",date: "12,13 Mar 2026" },
+       { name: "Robo maze", price: "₹299",date: "12,13 Mar 2026" },
     ],
 },
 {
@@ -76,6 +86,8 @@ const events = [
   image: "images/sponsors/alan-quirvan-U902HYyXYtw-unsplash.jpg",
   description: "Autonomous drone competition focusing on navigation and precision.",
   price: "₹499",
+    date: "12,13 Mar 2026",
+
 },
   {
     id: 8,
@@ -85,13 +97,14 @@ const events = [
       "Hands-on workshops in SolidWorks, ANSYS, EVs, IC Engines, 3D Printing and more.",
     price: "Will be updated soon",
   subEvents: [
-      { name: "Solidworks workshop", price: "₹349" },
-      { name: "Ansys workshop", price: "₹349" },
-      { name: "Refrigiration and Airconditioning workshop", price: "199" },
-      { name: "Welding workshop", price: "₹199" },
-      { name: "EV workshop", price: "₹199" },
-      { name: "IC Engines", price: "₹199" },
-       { name: "3D Printing", price: "₹299" },
+           { name: "Ansys workshop", price: "₹349",date: "2,3 Mar 2026" },
+       { name: "3D Printing workshop", price: "₹299" ,date: "7 Mar 2026"},
+         { name: "Solidworks workshop", price: "₹349" ,date: "9,10,11 Mar 2026"},
+      { name: "Refrigiration and Airconditioning workshop", price: "199" ,date: "12 Mar 2026"},
+          { name: "EV workshop", price: "₹199",date: "12 Mar 2026" },
+  { name: "IC Engines workshop", price: "₹199",date: "13 Mar 2026" },
+      { name: "Welding workshop", price: "₹199",date: "13 Mar 2026" },
+     
     ],
   },
 ]
@@ -300,9 +313,45 @@ setShowForm(false)
   </button>
 )}
 
-                {showForm && (
-                  <div className="space-y-4 mt-6">
+              {showForm && (
+  <div className="space-y-6 mt-6">
 
+    {/* TABLE */}
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm border border-border/30 rounded-lg">
+        <thead className="bg-muted">
+          <tr>
+            <th className="text-left p-3">Event</th>
+            <th className="text-left p-3">Date</th>
+            <th className="text-left p-3">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {activeEvent.subEvents ? (
+            activeEvent.subEvents.map((sub: any) => (
+              <tr key={sub.name} className="border-t">
+                <td className="p-3">{sub.name}</td>
+                <td className="p-3">{sub.date}</td>
+                <td className="p-3 font-semibold text-cyan-600">
+                  {sub.price}
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr className="border-t">
+              <td className="p-3">{activeEvent.name}</td>
+              <td className="p-3">{activeEvent.date}</td>
+              <td className="p-3 font-semibold text-cyan-600">
+                {activeEvent.price}
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+
+    {/* FORM STARTS */}
+    <div className="space-y-4">
                     <input
                       name="name"
                       placeholder="Full Name"
@@ -370,6 +419,7 @@ setShowForm(false)
   Registration will be confirmed only after successful payment.
 </div>
 
+
 {/* QR Code */}
 <div className="text-center pt-4">
   <p className="font-semibold mb-2">
@@ -392,6 +442,7 @@ setShowForm(false)
                     </button>
 
                   </div>
+                      </div>
                 )}
               </motion.div>
             </motion.div>
