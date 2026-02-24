@@ -63,8 +63,8 @@ const events = [
     description: "Technical competitions and challenges.",
    subEvents: [
       { name: "Technical Paper Presentation", price: "₹150",date: "12 Mar 2026" },
-      { name: "Structure Building", price: "₹150" ,date: "12 Mar 2026"},
-      { name: "Solidworks", price: "₹75",date: "13 Mar 2026" },
+      { name: "Truss It", price: "₹150" ,date: "12 Mar 2026"},
+      { name: "Solid Works", price: "₹75",date: "13 Mar 2026" },
       { name: "Ansys", price: "₹75", date: "13 Mar 2026"},
     ],
   },
