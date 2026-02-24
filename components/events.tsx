@@ -10,26 +10,26 @@ const events = [
   {
     id: 1,
     name: "Mechathon",
-    image: "images/sponsors/mika-baumeister-wZ49T2Tc7xw-unsplash.jpg",
+    image: "images/sponsors/pc-solar-panels-manufacturing-plant-used-study-solar-energy-systems_482257-118107.jpg (1).jpeg",
     description:
       "A time-bound mechanical innovation challenge where ideas turn into reality. Participants design, build, and compete with custom robotic systems.",
-    prize: "Will be updated soon",
+    price: "₹249",
   },
   {
     id: 2,
     name: "Business Events",
     image: "images/stem-list-EVgsAbL51Rk-unsplash.jpg",
     description:
-      "Strategic and startup-focused events where participants pitch ideas and take on real-world corporate challenges.",
-    prize: "Will be updated soon",
+    "Strategic and startup-focused events where participants pitch ideas and take on real-world corporate challenges.",
+    price: "₹100",
   },
   {
     id: 3,
     name: "Open Loop Events",
-    image: "/images/event-maneuver.jpg",
+    image: "images/sponsors/premium_vector-1731328754912-02598fef08bc.png",
     description:
       "Creative and engaging team-based challenges testing coordination and presence of mind.",
-    prize: "Will be updated soon",
+    price: "Will be updated soon",
   },
   {
     id: 4,
@@ -37,27 +37,26 @@ const events = [
     image: "images/sponsors/absolutvision-82TpEld0_e4-unsplash.jpg",
     description:
       "Project presentation event showcasing innovative models and prototypes.",
-    prize: "Will be updated soon",
+    price: "₹499",
   },
   {
     id: 5,
     name: "3D Printing Hackathon",
-    image: "images/sponsors/kadir-celep-HsefvbLbNWc-unsplash.jpg",
+    image: "images/sponsors/photo-1563520239648-a24e51d4b570.jpeg",
     description:
       "Rapid innovation challenge transforming ideas into functional 3D printed prototypes.",
-    prize: "Will be updated soon",
+    price: "₹799",
   },
   {
     id: 6,
     name: "Technical Events",
     image: "images/sponsors/kumpan-electric-SYo5eazBrls-unsplash.jpg",
     description: "Technical competitions and challenges.",
-    prize: "Technical paper presentations, CAD challenges, analysis competitions and more.",
-    subEvents: [
-      "Technical Paper Presentation",
-      "Structure Building",
-      "CAD Design Challenge",
-      "Analysis Challenge",
+   subEvents: [
+      { name: "Technical Paper Presentation", price: "₹150" },
+      { name: "Structure Building", price: "₹150" },
+      { name: "Solidworks", price: "₹75" },
+      { name: "Ansys", price: "₹75" },
     ],
   },
  {
@@ -65,17 +64,18 @@ const events = [
   name: "Robotic Events",
   image: "images/sponsors/leiada-krozjhen-99F9-FV3cbE-unsplash.jpg",
   description: "Combined Line Follower Bot and RC Racing challenge.",
-  prize: "Will be updated soon",
   subEvents: [
-    "Line Follower Bot + RC Racing"
-  ],
+      { name: "Line Follower Bot+RC Racing", price: "₹499" },
+      { name: "Line Follower", price: "₹299" },
+      { name: "RC Racing", price: "₹299" },
+    ],
 },
 {
   id: 9,
   name: "Autonomous Drone Challenge",
   image: "images/sponsors/alan-quirvan-U902HYyXYtw-unsplash.jpg",
   description: "Autonomous drone competition focusing on navigation and precision.",
-  prize: "Will be updated soon",
+  price: "₹499",
 },
   {
     id: 8,
@@ -83,7 +83,16 @@ const events = [
     image: "images/sponsors/kirill-prikhodko-kRp5woiVDaY-unsplash.jpg",
     description:
       "Hands-on workshops in SolidWorks, ANSYS, EVs, IC Engines, 3D Printing and more.",
-    prize: "Will be updated soon",
+    price: "Will be updated soon",
+  subEvents: [
+      { name: "Solidworks workshop", price: "₹349" },
+      { name: "Ansys workshop", price: "₹349" },
+      { name: "Refrigiration and Airconditioning workshop", price: "199" },
+      { name: "Welding workshop", price: "₹199" },
+      { name: "EV workshop", price: "₹199" },
+      { name: "IC Engines", price: "₹199" },
+       { name: "3D Printing", price: "₹299" },
+    ],
   },
 ]
 
@@ -91,6 +100,7 @@ export function Events() {
   const [activeEvent, setActiveEvent] = useState<any>(null)
   const [showForm, setShowForm] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [successMessage, setSuccessMessage] = useState("")
 
   const [formData, setFormData] = useState({
     name: "",
@@ -109,7 +119,10 @@ export function Events() {
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
-
+  const selectedSubEvent =
+    activeEvent?.subEvents?.find(
+      (sub: any) => sub.name === formData.subEvent
+    ) || null
   const validateForm = () => {
     const { name, college, phone, txnId, subEvent } = formData
 
@@ -162,8 +175,15 @@ export function Events() {
         setLoading(false)
         return
       }
+setSuccessMessage(
+  "Registration submitted successfully! You can check your passes in My Passes (Menu)."
+)
+setTimeout(() => {
+  setActiveEvent(null)
+  setSuccessMessage("")
+}, 2500)
 
-      alert("Registration submitted successfully!")
+setShowForm(false)
 
       setShowForm(false)
       setFormData({
@@ -254,17 +274,23 @@ export function Events() {
   {activeEvent.description}
 </p>
 
-{/* Prize */}
-<p className="font-semibold mb-6">
-  Prize: {activeEvent.prize}
-</p>
+{/* Show price only if NO subEvents */}
+{!activeEvent.subEvents && activeEvent.price && (
+  <p className="font-semibold mb-6">
+    Price: {activeEvent.price}
+  </p>
+)}
 
 {/* Multiple Events Notice */}
 <p className="text-sm text-muted-foreground mb-6">
   You may participate in multiple events. 
   Please submit separate registrations and payments for each event.
 </p>
-
+{successMessage && (
+  <div className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-600 text-center font-semibold">
+    {successMessage}
+  </div>
+)}
 {!showForm && (
   <button
     onClick={() => setShowForm(true)}
@@ -301,28 +327,35 @@ export function Events() {
                       className="w-full border p-3 rounded"
                     />
 
-                    {/* Sub Event Dropdown */}
-                 {activeEvent.subEvents && (
-  <select
-    name="subEvent"
-    value={formData.subEvent}
-    onChange={handleChange}
-    className="w-full border border-border p-3 rounded bg-background text-foreground focus:outline-none"
-  >
-    <option value="" disabled className="bg-background text-foreground">
-      Select Category
-    </option>
+              {/* Sub Event Dropdown + Price */}
+                  {/* Sub Event Dropdown + Price */}
+{activeEvent.subEvents && (
+  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
 
-    {activeEvent.subEvents.map((sub: string) => (
-      <option
-        key={sub}
-        value={sub}
-        className="bg-background text-foreground"
-      >
-        {sub}
+    <select
+      name="subEvent"
+      value={formData.subEvent}
+      onChange={handleChange}
+      className="w-full sm:flex-1 border p-3 rounded bg-background"
+    >
+      <option value="" disabled>
+        Select Category
       </option>
-    ))}
-  </select>
+
+      {activeEvent.subEvents.map((sub: any) => (
+        <option key={sub.name} value={sub.name}>
+          {sub.name}
+        </option>
+      ))}
+    </select>
+
+    {selectedSubEvent && (
+      <div className="sm:min-w-[100px] text-left sm:text-right font-semibold text-cyan-600">
+        {selectedSubEvent.price}
+      </div>
+    )}
+
+  </div>
 )}
 
                     <input

@@ -50,7 +50,7 @@ export function About() {
           {/* Image */}
           <div className="relative h-[400px] md:h-[600px]">
             <Image
-              src="/images/3.jpeg"
+              src="images/sponsors/IMG_20251120_151840.jpg.jpeg"
               alt="Department of Mechanical Engineering"
               fill
               className="object-cover rounded-2xl shadow-2xl"

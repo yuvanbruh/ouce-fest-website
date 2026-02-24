@@ -10,12 +10,12 @@ const faqs = [
     answer:
       "Mecharena 2026 is a celebration of mechanical engineering, robotics, and innovation — bringing together students, professionals, and enthusiasts for competitions, workshops, and showcases.",
   },
-  {
-    id: 2,
-    question: "What is a Pronite?",
-    answer:
-      "'Pronite' refers to the evening entertainment events at Mecharena, featuring musical performances and special guest acts. These are social highlights meant for attendees to relax and enjoy after the day's technical events.",
-  },
+ {
+  id: 2,
+  question: "What is My Pass?",
+  answer:
+    "'My Pass' allows you to check all the events you have registered for using your phone number. You can view your registration status (Verified or Pending) and see your event details in one place.",
+},
   {
     id: 3,
     question: "How do I register for Mecharena 2026?",
