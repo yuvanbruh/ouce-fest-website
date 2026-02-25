@@ -43,7 +43,7 @@ const events = [
     description:
       "Project presentation event showcasing innovative models and prototypes. Prizes worth upto ₹10K",
     price: "₹499",
-      date: "13 Mar 2026",
+      date: "12 Mar 2026",
 
   },
   {
@@ -62,7 +62,7 @@ const events = [
     image: "images/sponsors/kumpan-electric-SYo5eazBrls-unsplash.jpg",
     description: "Technical competitions and challenges.",
    subEvents: [
-      { name: "Technical Paper Presentation", price: "₹150",date: "12 Mar 2026" },
+      { name: "Technical Paper Presentation", price: "₹150",date: "13 Mar 2026" },
       { name: "Truss It", price: "₹150" ,date: "12 Mar 2026"},
       { name: "Solid Works", price: "₹75",date: "13 Mar 2026" },
       { name: "Ansys", price: "₹75", date: "13 Mar 2026"},
@@ -74,10 +74,10 @@ const events = [
   image: "images/sponsors/leiada-krozjhen-99F9-FV3cbE-unsplash.jpg",
   description: "Combined Line Follower Bot and RC Racing challenge. Prizes worth upto ₹10K",
   subEvents: [
-      { name: "Line Follower Bot+RC Racing +Robo maze", price: "₹699",date: "12,13 Mar 2026" },
       { name: "Line Follower", price: "₹299" ,date: "12,13 Mar 2026"},
       { name: "RC Racing", price: "₹299",date: "12,13 Mar 2026" },
        { name: "Robo maze", price: "₹299",date: "12,13 Mar 2026" },
+          { name: "Robo Sumo", price: "₹299",date: "12,13 Mar 2026" },
     ],
 },
 {
@@ -323,7 +323,6 @@ setShowForm(false)
           <tr>
             <th className="text-left p-3">Event</th>
             <th className="text-left p-3">Date</th>
-            <th className="text-left p-3">Price</th>
           </tr>
         </thead>
         <tbody>
@@ -332,18 +331,12 @@ setShowForm(false)
               <tr key={sub.name} className="border-t">
                 <td className="p-3">{sub.name}</td>
                 <td className="p-3">{sub.date}</td>
-                <td className="p-3 font-semibold text-cyan-600">
-                  {sub.price}
-                </td>
               </tr>
             ))
           ) : (
             <tr className="border-t">
               <td className="p-3">{activeEvent.name}</td>
               <td className="p-3">{activeEvent.date}</td>
-              <td className="p-3 font-semibold text-cyan-600">
-                {activeEvent.price}
-              </td>
             </tr>
           )}
         </tbody>
@@ -354,12 +347,21 @@ setShowForm(false)
     <div className="space-y-4">
                     <input
                       name="name"
-                      placeholder="Full Name"
+placeholder={
+  activeEvent?.name === "Robotic Events"
+    ? "Team Name / Your Name"
+    : "Full Name"
+}
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full border p-3 rounded"
                     />
-
+{activeEvent?.name === "Robotic Events" && (
+  <p className="text-xs text-muted-foreground mt-1">
+    Maximum team size: <span className="font-semibold text-cyan-600">3 members</span>.  
+    Individual participants may also register.
+  </p>
+)}
                     <input
                       name="college"
                       placeholder="College Name"
