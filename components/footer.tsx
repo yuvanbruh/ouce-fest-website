@@ -70,7 +70,7 @@ export function Footer() {
     className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
   >
     <Github size={14} />
-    Engineered by
+    Engineered by CEO
   </a>
 </div>
 

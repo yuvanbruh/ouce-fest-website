@@ -104,6 +104,7 @@ const events = [
           { name: "EV workshop", price: "₹199",date: "12 Mar 2026" },
   { name: "IC Engines workshop", price: "₹199",date: "13 Mar 2026" },
       { name: "Welding workshop", price: "₹199",date: "13 Mar 2026" },
+       { name: "Robotics workshop", price: "₹199",date: "13 Mar 2026" },
      
     ],
   },

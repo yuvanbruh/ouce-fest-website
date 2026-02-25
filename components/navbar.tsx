@@ -83,14 +83,14 @@ export function Navbar() {
                 Contact
               </Link>
 
-              <a
-                href="/images/brochure.jpeg"
-                download
-                target="_blank"
-                className="text-white/90 text-sm tracking-wider hover:text-cyan-400 transition-colors"
-              >
-                Brochure
-              </a>
+            <a
+  href="/brochure.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-white/90 text-sm tracking-wider hover:text-cyan-400 transition-colors"
+>
+  Brochure
+</a>
 
               <button
                 onClick={() => setPassOpen(true)}
@@ -131,15 +131,14 @@ export function Navbar() {
                   Contact
                 </Link>
 
-                <a
-                  href="/images/brochure.jpeg"
-                  download
-                  target="_blank"
-                  onClick={() => setOpen(false)}
-                  className="text-white"
-                >
-                  Brochure
-                </a>
+            <a
+  href="/brochure.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-white/90 text-sm tracking-wider hover:text-cyan-400 transition-colors"
+>
+  Brochure
+</a>
 
                 <button
                   onClick={() => {
