@@ -74,10 +74,12 @@ const events = [
   image: "images/sponsors/leiada-krozjhen-99F9-FV3cbE-unsplash.jpg",
   description: "Combined Line Follower Bot and RC Racing challenge. Prizes worth upto ₹10K",
   subEvents: [
+      { name: "Robo Maze + RC Racing", price: "₹499",date: "12,13 Mar 2026" },
       { name: "Line Follower", price: "₹299" ,date: "12,13 Mar 2026"},
       { name: "RC Racing", price: "₹299",date: "12,13 Mar 2026" },
        { name: "Robo maze", price: "₹299",date: "12,13 Mar 2026" },
           { name: "Robo Sumo", price: "₹299",date: "12,13 Mar 2026" },
+           
     ],
 },
 {
