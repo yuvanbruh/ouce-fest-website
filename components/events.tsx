@@ -112,24 +112,6 @@ export function Events() {
     }
   }
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    // No longer needed - registration form moved to separate page
-  }
-  const selectedSubEvent =
-    activeEvent?.subEvents?.find(
-      (sub: any) => sub.name === ""
-    ) || null
-  const validateForm = () => {
-    // No longer needed - validation on registration page
-    return true
-  }
-
-  const handleSubmit = async () => {
-    // No longer needed - submission on payment page
-  }
-
   return (
     <section id="events" className="py-16 bg-background">
       <div className="container mx-auto px-4">
@@ -143,10 +125,7 @@ export function Events() {
           {events.map((event) => (
             <button
               key={event.id}
-              onClick={() => {
-                setActiveEvent(event)
-                setShowForm(false)
-              }}
+              onClick={() => setActiveEvent(event)}
               className="relative h-64 rounded-xl overflow-hidden hover:scale-105 transition"
             >
               <Image
