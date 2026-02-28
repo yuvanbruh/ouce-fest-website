@@ -107,7 +107,6 @@ export default function PaymentPage() {
           subEvent,
         }),
       })
-
       const data = await res.json()
 
       if (!res.ok) {
