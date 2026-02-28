@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container mx-auto px-4 space-y-8">
 
         {/* Contact Section */}
-        <div className="text-center space-y-3">
+        <div id="contact" className="text-center space-y-3">
           <h3 className="text-lg font-semibold text-primary">
             Contact
           </h3>
@@ -70,7 +70,7 @@ export function Footer() {
     className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
   >
     <Github size={14} />
-    Engineered by
+    Engineered by CEO
   </a>
 </div>
 

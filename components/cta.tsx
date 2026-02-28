@@ -45,14 +45,14 @@ export function CTA() {
   REGISTER NOW
 </Link>
 
-             <a
-    href="/images/brochure.jpeg"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="border border-cyan-400 px-6 md:px-10 py-3 md:py-4 text-white tracking-widest text-sm md:text-lg hover:bg-cyan-400/10 transition-all w-full sm:w-auto text-center"
-  >
-    VIEW BROCHURE
-  </a>
+        <a
+  href="/brochure.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="border border-cyan-400 px-6 md:px-10 py-3 md:py-4 text-white tracking-widest text-sm md:text-lg hover:bg-cyan-400/10 transition-all w-full sm:w-auto text-center"
+>
+  VIEW BROCHURE
+</a>
 
         </div>
 
