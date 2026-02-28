@@ -289,7 +289,11 @@ setShowForm(false)
 <p className="text-muted-foreground mb-4">
   {activeEvent.description}
 </p>
-
+{activeEvent?.name === "Robotic Events" && (
+  <p className="text-sm text-yellow-400 mb-4">
+    📘 Detailed rule book will be updated soon.
+  </p>
+)}
 {/* Show price only if NO subEvents */}
 {!activeEvent.subEvents && activeEvent.price && (
   <p className="font-semibold mb-6">
@@ -345,7 +349,13 @@ setShowForm(false)
         </tbody>
       </table>
     </div>
-
+{activeEvent?.name === "Robotic Events" &&
+  formData.subEvent === "Robo Maze + RC Racing" && (
+    <div className="text-xs text-yellow-400 mt-3">
+      ⚠ You may use the organizer-provided bot for an additional 
+      <span className="font-semibold text-cyan-400"> ₹100</span>.
+    </div>
+)}
     {/* FORM STARTS */}
     <div className="space-y-4">
                     <input
