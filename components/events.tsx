@@ -3,8 +3,8 @@
 
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { PaymentQR } from "./PaymentQR"
 
 const events = [
   
@@ -98,107 +98,36 @@ const events = [
 ]
 
 export function Events() {
+  const router = useRouter()
   const [activeEvent, setActiveEvent] = useState<any>(null)
-  const [showForm, setShowForm] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [successMessage, setSuccessMessage] = useState("")
-
-  const [formData, setFormData] = useState({
-    name: "",
-    college: "",
-    phone: "",
-    txnId: "",
-    subEvent: "",
-  })
 
   useEffect(() => {
     document.body.style.overflow = activeEvent ? "hidden" : "auto"
   }, [activeEvent])
 
+  const handleRegisterClick = () => {
+    if (activeEvent) {
+      router.push(`/register?eventId=${activeEvent.id}`)
+      setActiveEvent(null)
+    }
+  }
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    // No longer needed - registration form moved to separate page
   }
   const selectedSubEvent =
     activeEvent?.subEvents?.find(
-      (sub: any) => sub.name === formData.subEvent
+      (sub: any) => sub.name === ""
     ) || null
   const validateForm = () => {
-    const { name, college, phone, txnId, subEvent } = formData
-
-    if (!name.trim() || name.length < 3) {
-      alert("Enter valid full name")
-      return false
-    }
-
-    if (!college.trim()) {
-      alert("Enter valid college name")
-      return false
-    }
-
-    if (!/^[6-9]\d{9}$/.test(phone)) {
-      alert("Enter valid 10-digit phone number")
-      return false
-    }
-
-    if (!/^[A-Za-z0-9]{10,}$/.test(txnId)) {
-      alert("Enter valid Transaction ID")
-      return false
-    }
-
-    if (activeEvent?.subEvents && !subEvent) {
-      alert("Please select category")
-      return false
-    }
-
+    // No longer needed - validation on registration page
     return true
   }
 
   const handleSubmit = async () => {
-    if (!validateForm()) return
-    setLoading(true)
-
-    try {
-      const res = await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          eventName: activeEvent.name,
-        }),
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) {
-        alert(data.error || "Something went wrong")
-        setLoading(false)
-        return
-      }
-setSuccessMessage(
-  "Registration submitted successfully! You can check your passes in My Passes (Menu)."
-)
-setTimeout(() => {
-  setActiveEvent(null)
-  setSuccessMessage("")
-}, 2500)
-
-setShowForm(false)
-
-      setShowForm(false)
-      setFormData({
-        name: "",
-        college: "",
-        phone: "",
-        txnId: "",
-        subEvent: "",
-      })
-    } catch {
-      alert("Server error. Try again.")
-    }
-
-    setLoading(false)
+    // No longer needed - submission on payment page
   }
 
   return (
@@ -282,114 +211,34 @@ setShowForm(false)
   </p>
 )}
 
+{/* Show sub-events if available */}
+{activeEvent.subEvents && (
+  <div className="mb-6">
+    <p className="font-semibold mb-3">Available Categories:</p>
+    <ul className="space-y-2 text-sm text-muted-foreground">
+      {activeEvent.subEvents.map((sub: any) => (
+        <li key={sub.name} className="flex justify-between border-b border-border/30 pb-2">
+          <span>{sub.name}</span>
+          <span className="font-semibold text-cyan-600">{sub.price}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
 {/* Multiple Events Notice */}
 <p className="text-sm text-muted-foreground mb-6">
   You may participate in multiple events. 
   Please submit separate registrations and payments for each event.
 </p>
-{successMessage && (
-  <div className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-600 text-center font-semibold">
-    {successMessage}
-  </div>
-)}
-{!showForm && (
-  <button
-    onClick={() => setShowForm(true)}
-    className="bg-cyan-600 text-white px-6 py-3 rounded font-semibold w-full"
-  >
-    REGISTER NOW
-  </button>
-)}
 
-                {showForm && (
-                  <div className="space-y-4 mt-6">
-
-                    <input
-                      name="name"
-                      placeholder="Full Name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full border p-3 rounded"
-                    />
-
-                    <input
-                      name="college"
-                      placeholder="College Name"
-                      value={formData.college}
-                      onChange={handleChange}
-                      className="w-full border p-3 rounded"
-                    />
-
-                    <input
-                      name="phone"
-                      placeholder="Phone Number"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full border p-3 rounded"
-                    />
-
-              {/* Sub Event Dropdown + Price */}
-                  {/* Sub Event Dropdown + Price */}
-{activeEvent.subEvents && (
-  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-
-    <select
-      name="subEvent"
-      value={formData.subEvent}
-      onChange={handleChange}
-      className="w-full sm:flex-1 border p-3 rounded bg-background"
-    >
-      <option value="" disabled>
-        Select Category
-      </option>
-
-      {activeEvent.subEvents.map((sub: any) => (
-        <option key={sub.name} value={sub.name}>
-          {sub.name}
-        </option>
-      ))}
-    </select>
-
-    {selectedSubEvent && (
-      <div className="sm:min-w-[100px] text-left sm:text-right font-semibold text-cyan-600">
-        {selectedSubEvent.price}
-      </div>
-    )}
-
-  </div>
-)}
-
-                    <input
-                      name="txnId"
-                      placeholder="UPI Transaction ID"
-                      value={formData.txnId}
-                      onChange={handleChange}
-                      className="w-full border p-3 rounded"
-                    />
-
-                    {/* Dynamic Payment QR Code */}
-                    {formData.name && (
-                      <div className="mt-6 pt-6 border-t border-white/10">
-                        <PaymentQR
-                          name={formData.name}
-                          eventName={activeEvent.name}
-                          phone={formData.phone}
-                          subEvent={formData.subEvent}
-                          price={selectedSubEvent?.price}
-                        />
-                      </div>
-                    )}
-
-                    <button
-                      onClick={handleSubmit}
-                      disabled={loading}
-                      className="w-full bg-cyan-600 text-white py-3 rounded font-semibold disabled:opacity-50"
-                    >
-                      {loading ? "Submitting..." : "Submit Registration"}
-                    </button>
-
-                  </div>
-                )}
+{/* Register Button */}
+<button
+  onClick={handleRegisterClick}
+  className="bg-cyan-600 text-white px-6 py-3 rounded font-semibold w-full hover:bg-cyan-700 transition"
+>
+  REGISTER NOW
+</button>
               </motion.div>
             </motion.div>
           )}
