@@ -25,7 +25,7 @@ export function PaymentQR({
     if (!name || !eventName) return
 
     // Generate UPI string with user name in remark
-    const upiId = "business@okhdfcbank" // 👈 REPLACE WITH YOUR UPI ID
+    const upiId = "mecharena@sbi" // 👈 REPLACE WITH YOUR UPI ID
     const amount = "100" // Default amount
     const remark = subEvent
       ? `${eventName} - ${subEvent} - ${name}`
