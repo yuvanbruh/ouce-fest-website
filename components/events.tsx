@@ -110,6 +110,25 @@ const events = [
      
     ],
   },
+   {
+    id: 9,
+    name: "CFD",
+    image: "images/sponsors/kirill-prikhodko-kRp5woiVDaY-unsplash.jpg",
+    description:
+      "Hands-on workshops in Analysis softwares like ANSYS and more.",
+    price: "Will be updated soon",
+  subEvents: [
+           { name: "Ansys workshop", price: "₹349",date: "9,10,11 Mar 2026" },
+       { name: "3D Printing workshop", price: "₹299" ,date: "7 Mar 2026"},
+         { name: "Solid works workshop", price: "₹349" ,date: "9,10,11 Mar 2026"},
+      { name: "Refrigeration and Air Conditioning workshop", price: "199" ,date: "12 Mar 2026"},
+          { name: "EV workshop", price: "₹199",date: "12 Mar 2026" },
+  { name: "IC Engines workshop", price: "₹199",date: "13 Mar 2026" },
+      { name: "Welding workshop", price: "₹199",date: "13 Mar 2026" },
+       { name: "Robotics workshop", price: "₹199",date: "13 Mar 2026" },
+     
+    ],
+  },
 ]
 
 export function Events() {
