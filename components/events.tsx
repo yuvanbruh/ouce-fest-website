@@ -107,7 +107,7 @@ const events = [
   { name: "IC Engines workshop", price: "₹199",date: "13 Mar 2026" },
       { name: "Welding workshop", price: "₹199",date: "13 Mar 2026" },
        { name: "Robotics workshop", price: "₹199",date: "13 Mar 2026" },
-          { name: "Computational Fluid Dynamics workshop", price: "₹299",date: "13 Mar 2026" },
+          { name: "Computational Fluid Dynamics workshop", price: "₹200",date: "13 Mar 2026" },
      
     ],
   },
@@ -121,6 +121,8 @@ export function Events() {
 
   const [formData, setFormData] = useState({
     name: "",
+    teamMember2: "",
+    teamMember3: "",
     college: "",
     phone: "",
     txnId: "",
@@ -205,6 +207,8 @@ setShowForm(false)
       setShowForm(false)
       setFormData({
         name: "",
+          teamMember2: "",
+  teamMember3: "",
         college: "",
         phone: "",
         txnId: "",
@@ -224,6 +228,7 @@ setShowForm(false)
         <h2 className="text-4xl font-bold text-primary text-center mb-12">
           EVENTS
         </h2>
+        
 
         {/* Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -362,8 +367,9 @@ setShowForm(false)
                     <input
                       name="name"
 placeholder={
-  activeEvent?.name === "Robotic Events"
-    ? "Team Name / Your Name"
+  activeEvent?.name === "Robotic Events" ||
+  activeEvent?.name === "3D Printing Hackathon"
+    ? "Team Leader Name"
     : "Full Name"
 }
                       value={formData.name}
@@ -376,6 +382,30 @@ placeholder={
     Individual participants may also register.
   </p>
 )}
+{activeEvent?.name === "3D Printing Hackathon" && (
+  <>
+    <input
+      name="teamMember2"
+      placeholder="Team Member 2 (optional)"
+      value={formData.teamMember2}
+      onChange={handleChange}
+      className="w-full border p-3 rounded"
+    />
+
+    <input
+      name="teamMember3"
+      placeholder="Team Member 3 (optional)"
+      value={formData.teamMember3}
+      onChange={handleChange}
+      className="w-full border p-3 rounded"
+    />
+
+    <p className="text-xs text-muted-foreground">
+      Team size: 1–3 members
+    </p>
+  </>
+)}
+
                     <input
                       name="college"
                       placeholder="College Name"

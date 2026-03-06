@@ -24,7 +24,8 @@ export async function POST(req: Request) {
   try {
     const body = await req.json()
 
-    const { name, college, phone, txnId, eventName, subEvent } = body
+    // const { name, college, phone, txnId, eventName, subEvent } = body
+    const { name, teamMember2, teamMember3, college, phone, txnId, eventName, subEvent } = body
 
     // -------- REQUIRED FIELDS --------
     if (!name || !college || !phone || !txnId || !eventName) {
@@ -78,17 +79,29 @@ export async function POST(req: Request) {
     }
 
     // -------- INSERT RECORD --------
-    await collection.insertOne({
-      name: name.trim(),
-      college: college.trim(),
-      phone,
-      txnId: txnId.trim(),
-      eventName,
-      subEvent: subEvent || null,
-      verified: false,
-      createdAt: new Date(),
-    })
-
+    // await collection.insertOne({
+    //   name: name.trim(),
+    //   college: college.trim(),
+    //   phone,
+    //   txnId: txnId.trim(),
+    //   eventName,
+    //   subEvent: subEvent || null,
+    //   verified: false,
+    //   createdAt: new Date(),
+    // })
+    
+await collection.insertOne({
+  name: name.trim(),
+  teamMember2: teamMember2?.trim() || null,
+  teamMember3: teamMember3?.trim() || null,
+  college: college.trim(),
+  phone,
+  txnId: txnId.trim(),
+  eventName,
+  subEvent: subEvent || null,
+  verified: false,
+  createdAt: new Date(),
+})
     return NextResponse.json({
       message: "Registration successful",
     })

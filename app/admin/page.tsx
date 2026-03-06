@@ -2,9 +2,22 @@
 
 import { useEffect, useState } from "react"
 
+// interface Registration {
+//   _id: string
+//   name: string
+//   college: string
+//   phone: string
+//   txnId: string
+//   eventName: string
+//   subEvent?: string
+//   verified: boolean
+// }
+
 interface Registration {
   _id: string
   name: string
+  teamMember2?: string
+  teamMember3?: string
   college: string
   phone: string
   txnId: string
@@ -12,7 +25,6 @@ interface Registration {
   subEvent?: string
   verified: boolean
 }
-
 export default function AdminPage() {
   const [data, setData] = useState<Registration[]>([])
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
@@ -139,7 +151,21 @@ export default function AdminPage() {
                           key={reg._id}
                           className="border-t border-gray-700 bg-gray-900"
                         >
-                          <td className="p-4">{reg.name}</td>
+                          <td className="p-4">
+  {reg.name}
+
+  {reg.teamMember2 && (
+    <div className="text-xs text-gray-400 mt-1">
+      {reg.teamMember2}
+    </div>
+  )}
+
+  {reg.teamMember3 && (
+    <div className="text-xs text-gray-400">
+      {reg.teamMember3}
+    </div>
+  )}
+</td>
                           <td className="p-4">{reg.college}</td>
                           <td className="p-4">{reg.phone}</td>
                           <td className="p-4 font-mono text-sm">
@@ -179,9 +205,21 @@ export default function AdminPage() {
                       key={reg._id}
                       className="bg-gray-900 border border-gray-700 rounded-xl p-4"
                     >
-                      <p className="font-semibold text-white">
-                        {reg.name}
-                      </p>
+                    <p className="font-semibold text-white">
+  {reg.name}
+</p>
+
+{reg.teamMember2 && (
+  <p className="text-xs text-gray-400">
+    {reg.teamMember2}
+  </p>
+)}
+
+{reg.teamMember3 && (
+  <p className="text-xs text-gray-400">
+    {reg.teamMember3}
+  </p>
+)}
                       <p className="text-sm text-gray-400">
                         {reg.college}
                       </p>
