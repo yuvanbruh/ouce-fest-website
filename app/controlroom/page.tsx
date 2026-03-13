@@ -1,4 +1,5 @@
 "use client"
+import * as XLSX from "xlsx"
 
 import { useEffect, useState } from "react"
 
@@ -52,7 +53,38 @@ export default function AdminPage() {
       )
     )
   }
+const exportSubEvent = (eventName: string, subEvent: string) => {
 
+  const filtered = data.filter(
+    (d) =>
+      d.eventName === eventName &&
+      (d.subEvent || "General") === subEvent
+  )
+
+  if (filtered.length === 0) {
+    alert("No registrations found")
+    return
+  }
+
+  const formatted = filtered.map((r) => ({
+    Name: r.name,
+    Member2: r.teamMember2 || "",
+    Member3: r.teamMember3 || "",
+    College: r.college,
+    Phone: r.phone,
+    TransactionID: r.txnId,
+    Status: r.verified ? "Verified" : "Pending"
+  }))
+
+  const worksheet = XLSX.utils.json_to_sheet(formatted)
+  const workbook = XLSX.utils.book_new()
+
+  const sheetName = `${eventName}_${subEvent}`
+
+  XLSX.utils.book_append_sheet(workbook, worksheet, sheetName)
+
+  XLSX.writeFile(workbook, `${sheetName}.xlsx`)
+}
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 p-4 md:p-8">
 
@@ -127,9 +159,20 @@ export default function AdminPage() {
             return (
               <div key={subCategory} className="mb-10">
 
-                <h3 className="text-xl font-semibold mb-4 text-white">
-                  {subCategory} ({groupedData.length})
-                </h3>
+<div className="flex items-center justify-between mb-4">
+
+  <h3 className="text-xl font-semibold text-white">
+    {subCategory} ({groupedData.length})
+  </h3>
+
+  <button
+    onClick={() => exportSubEvent(selectedEvent!, subCategory)}
+    className="px-3 py-1 bg-green-500 text-black rounded text-sm font-semibold"
+  >
+    Export
+  </button>
+
+</div>
 
                 {/* Desktop Table */}
                 <div className="hidden md:block overflow-x-auto rounded-lg border border-gray-700">
